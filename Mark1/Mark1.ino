@@ -30,16 +30,16 @@ unsigned int sensorValues[NUM_SENSORS];
 /* PID Neural network¨*/
 // Constantes para PID_NN
 
-float Kp = 12;
-float Ki = 0.00025;
-float Kd = 10.5;
+float Kp = 5;
+float Ki = 0;
+float Kd = 0;;
 
 float a =  1;
 float b =  1;
 float c =  1;
-float d = -1;
-float e = -1;
-float f = -1;
+float d =  1;
+float e =  1;
+float f =  1;
 
 float theta1[2][3] = {
 
@@ -115,7 +115,7 @@ void loop(){
   /*  ---------------------------------------------   */
 
   /* Controlador PID con estructura neuronal */
-  float X[2] = {r, x};
+  float X[2] = {r - x, y};
 
   /* Función de neurona P */
   float a1[2];
@@ -204,7 +204,7 @@ void recallQTR()
 }
 
 /* Funciones de neuronas tipo P I D */
-float threshold = 2000;
+float threshold = 1000;
 float Pneuron (float u){
   /* Neurona tipo P
    * La función limita el valor de la salida dentro del umbral (threshold)
